@@ -52,18 +52,7 @@ public class MainController {
     }
     return model;
   }
-/*  
-  @RequestMapping("/principal")
-    public ModelAndView principal(){
-        //List<Pelicula> peliculasTop = PeliculaDao.getTop();
-        List<Pelicula> peliculasNew = PeliculaDao.getNew();
-        return new ModelAndView("principal"); //.addObject("top",peliculasTop).addObject("new",peliculasNew);
-    }
-*/    
-    @RequestMapping ("/login")
-    public ModelAndView login() {
-      return new ModelAndView( "login");
-    }
+
 
     @RequestMapping("/text")
     public ModelAndView text() {
