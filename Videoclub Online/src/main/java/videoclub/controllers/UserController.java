@@ -9,26 +9,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.GrantedAuthority;
+ 
 import java.util.List;
 
-/**
- * Class UserController
- */
+
 @Controller
 public class UserController {
 
-  // ------------------------
-  // PUBLIC METHODS
-  // ------------------------
+  @Autowired
+  private UserDao userDao;
   
+  @Secured("ROLE_ADMIN") 
   @RequestMapping("/admin/users")
   @ResponseBody
     public String adminUsers(Model model){
         model.addAttribute("saludo", "Mi primera aplicacion web Spring Boot");
         return "admin_users";
     }
-    
+  
+  @Secured("ROLE_ADMIN")  
   @RequestMapping("/admin/peliculas")
   @ResponseBody
     public String adminPeliculas(Model model){
@@ -42,16 +43,12 @@ public class UserController {
         model.addAttribute("saludo", "Mi primera aplicacion web Spring Boot");
         return "profile";
     }
-  
-  /**
-   * Create a new user with an auto-generated id and email and name as passed 
-   * values.
-   */
+
   @RequestMapping(value="users/create")
   @ResponseBody
-  public String create(String user, String password, String email, Boolean admin) {
+  public String create(String user, String password, String email, int admin, List<GrantedAuthority> roles) {
     try {
-      User new_user = new User(user, password, email, admin);
+      User new_user = new User(user, password, email, admin, roles);
       userDao.create(new_user);
     }
     catch (Exception ex) {
@@ -60,9 +57,6 @@ public class UserController {
     return "User succesfully created!";
   }
   
-  /**
-   * Retrieve all the users
-   */
   @RequestMapping(value="users/all-users")
   @ResponseBody
   public String getUsers() {
@@ -81,12 +75,9 @@ public class UserController {
     return "The user is: " + allUsers;
   }
   
-  /**
-   * Update the email and the name for the user indentified by the passed id.
-   */
   @RequestMapping(value="users/update")
   @ResponseBody
-  public String updateName(long id, String user, String password, String email, Boolean admin) {
+  public String updateName(long id, String user, String password, String email, int admin) {
     try {
       User new_user = userDao.getById(id);
       new_user.setPassword(password);
@@ -101,9 +92,6 @@ public class UserController {
     return "User succesfully updated!";
   } 
   
-  /**
-   * Delete the user with the passed id.
-   */
   @RequestMapping(value="users/delete")
   @ResponseBody
   public String delete(long id) {
@@ -117,9 +105,6 @@ public class UserController {
     return "User succesfully deleted!";
   }
   
-  /**
-   * Retrieve the id for the user with the passed email address.
-   */
   @RequestMapping(value="users/get-by-admin")
   @ResponseBody
   public String getByAdmin(Boolean admin) {
@@ -161,13 +146,5 @@ public class UserController {
     }
     return "The user is: " + userId;
   }
-
-  // ------------------------
-  // PRIVATE FIELDS
-  // ------------------------
   
-  // Wire the UserDao used inside this controller.
-  @Autowired
-  private UserDao userDao;
-  
-} // class UserController
+}

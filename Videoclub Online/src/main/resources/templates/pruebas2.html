@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Video Club Online</title>
+  </head>
+
+  <body>
+  <div th:if="${admin}">
+    holi
+  </div>
+  chai
+  <form th:action="@{/peliculas/all-peliculas}" method="post">
+  <input type="search" name="search" />
+  <br />
+  <input type="submit" value="Search"/>
+  </form>
+  <h1>Hello Spring Security!</h1>
+  <p th:text="${username}"></p>
+  <p th:text="${password}"></p>
+  <form th:action="@{/logout}" method="post">
+  <input type="submit" value="Sign Out"/>
+  </form>
+  
+  
+  </body>
+
+</html>

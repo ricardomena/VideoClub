@@ -1,0 +1,14 @@
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/models/UserDao.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/security/SecurityConfiguration.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/controllers/MainController.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/security/CustomAuthenticationProvider.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/controllers/PeliculaController.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/models/PeliculaDao.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/Rest/PeliculassRestController.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/controllers/UserController.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/Application.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/controllers/SessionController.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/models/User.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/configs/DatabaseConfig.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/models/Pelicula.java
+/home/ubuntu/workspace/VideoClub/Videoclub Online/src/main/java/videoclub/DatabaseLoader.java

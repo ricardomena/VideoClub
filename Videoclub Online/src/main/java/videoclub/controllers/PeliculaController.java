@@ -12,34 +12,26 @@ import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
-/**
- * Class PeliculaController
- */
+
 @Controller
 @RequestMapping(value = "/peliculas")
 public class PeliculaController {
 
-  // ------------------------
-  // PUBLIC METHODS
-  // ------------------------
+  @Autowired
+  private PeliculaDao peliculaDao;
 
   @RequestMapping( value = "/{id}", method = RequestMethod.GET)
   @ResponseBody
-    public String peliculaInfo(@PathVariable("id") Long id, Model model){
+    public ModelAndView peliculaInfo(@PathVariable("id") Long id, Model model){
         Pelicula pelicula = peliculaDao.getById(id);
-        model.addAttribute("pelicula", pelicula);
-        return "pelicula_info";
+        return new ModelAndView("pelicula_info").addObject("pelicula", pelicula);
     }
 
-  /**
-   * Create a new pelicula with an auto-generated id and email and name as passed 
-   * values.
-   */
   @RequestMapping(value="/create")
   @ResponseBody
   public String create(String name, String url) {
     try {
-      Pelicula new_pelicula = new Pelicula(name, url);
+      Pelicula new_pelicula = new Pelicula();
       peliculaDao.create(new_pelicula);
     }
     catch (Exception ex) {
@@ -48,9 +40,6 @@ public class PeliculaController {
     return "Pelicula succesfully created!";
   }
   
-  /**
-   * Retrieve all the peliculas
-   */
   @RequestMapping(value="/all-peliculas")
   @ResponseBody
   public String getPeliculas() {
@@ -68,9 +57,6 @@ public class PeliculaController {
     return "The pelicula is: " + allPeliculas;
   }
   
-  /**
-   * Update the email and the name for the pelicula indentified by the passed id.
-   */
   @RequestMapping(value="/update")
   @ResponseBody
   public String updateName(long id, String name, String url) {
@@ -86,9 +72,6 @@ public class PeliculaController {
     return "Pelicula succesfully updated!";
   } 
   
-  /**
-   * Delete the pelicula with the passed id.
-   */
   @RequestMapping(value="/delete")
   @ResponseBody
   public String delete(long id) {
@@ -116,13 +99,21 @@ public class PeliculaController {
     return "The movie is: " + peliculaName;
   }
   
-
-  // ------------------------
-  // PRIVATE FIELDS
-  // ------------------------
+  @RequestMapping(value= "/get-by-name")
+  @ResponseBody
+  public ModelAndView getByName( String name) {
+      //getByID(@RequestParam()
+      name = "p";
+      List<Pelicula> peliculas = peliculaDao.getByName(name);
+      if(peliculas.isEmpty()){
+        return new ModelAndView("pruebas");
+      }
+      ModelAndView model = new ModelAndView("pruebas");
+      String salida = "";
+      for(Pelicula pelicula:peliculas){
+        salida = salida + "Nombre: " + pelicula.getName() + " Id: " + pelicula.getId() + "\n";
+      }
+      return model.addObject("peliculas",peliculas).addObject("pelicula1",peliculas.get(0));
+  }
   
-  // Wire the PeliculaDao used inside this controller.
-  @Autowired
-  private PeliculaDao peliculaDao;
-  
-} // class PeliculaController
+}

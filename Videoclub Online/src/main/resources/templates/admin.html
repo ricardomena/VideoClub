@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
   <head>
     <meta charset="utf-8"></meta>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
@@ -8,7 +8,7 @@
     <meta name="description" content=""></meta>
     <meta name="author" content=""></meta>
 
-    <title>Videoclub Principal</title>
+    <title>Videoclub - Admin Pelicula</title>
 
     <!-- Bootstrap core CSS -->
       
@@ -48,8 +48,6 @@
       </div>
     </nav>
     
-    <p th:text="${poster}"></p>
-    
     <div class="jumbotron">
       <div class="container">
         <div class="container" id="info">
@@ -68,19 +66,18 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                  <img th:src="${top1}" src="${top1}" alt="Logan"></img>
+                  <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNmJkODczNjItNDI5Yy00MGI1LTkyOWItZDNmNjM4ZGI1ZDVlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_SY1000_CR0,0,658,1000_AL_.jpg" alt="Logan"></img>
                 </div>
                 <div class="item">
-                  <img th:src="${top2}" src="${top2}" alt="Logan"></img>
+                  <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQwODQwNTg4OV5BMl5BanBnXkFtZTgwMTk4MTAzMjI@._V1_.jpg" alt="Logan"></img>
                 </div>
+
                 <div class="item">
-                  <img th:src="${top3}" src="${top3}" alt="Logan"></img>
+                  <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_SY1000_SX686_AL_.jpg" alt="Deadpool"></img>
                 </div>
+  
                 <div class="item">
-                  <img th:src="${top4}" src="${top4}" alt="Logan"></img>
-                </div>
-                <div class="item">
-                  <img th:src="${top5}" src="${top5}" alt="Logan"></img>
+                  <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg" alt="Star Wars"></img>
                 </div>
               </div>
   
@@ -110,19 +107,19 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                  <img th:src="${new1}" src="${new1}" alt="Logan"></img>
+                  <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNmJkODczNjItNDI5Yy00MGI1LTkyOWItZDNmNjM4ZGI1ZDVlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_SY1000_CR0,0,658,1000_AL_.jpg" alt="Logan"></img>
                 </div>
+                
                 <div class="item">
-                  <img th:src="${new2}" src="${new2}" alt="Logan"></img>
+                  <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQwODQwNTg4OV5BMl5BanBnXkFtZTgwMTk4MTAzMjI@._V1_.jpg" alt="Logan"></img>
                 </div>
+
                 <div class="item">
-                  <img th:src="${new3}" src="${new3}" alt="Logan"></img>
+                  <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_SY1000_SX686_AL_.jpg" alt="Deadpool"></img>
                 </div>
+  
                 <div class="item">
-                  <img th:src="${new4}" src="${new4}" alt="Logan"></img>
-                </div>
-                <div class="item">
-                  <img th:src="${new5}" src="${new5}" alt="Logan"></img>
+                  <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg" alt="Star Wars"></img>
                 </div>
               </div>
   
@@ -138,13 +135,13 @@
           </div>
         </div>
       </div>
+    </div>
       </div>
     </div>
-  </div>
     
       <footer>
         <p>&copy; Dise&ntilde;o de aplicaciones m&oacute;viles.</p>
       </footer>
-
+    </div> <!-- /container -->
   </body>
 </html>
