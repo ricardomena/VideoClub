@@ -5,22 +5,28 @@
   <title>Video Club Online</title>
   </head>
   <body>
-  
-    <!--<p th:if="${param.error}">Invalid credentials</p>
-    <p th:if="${param.logout}">Logged out</p>-->
+
     <a th:href="@{/Principal}" role="button">Atras</a>
     <br />
     
-    <p th:text="${pelicula.getName()}"></p>
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="${pelicula.getUrl()}"></iframe>
-    </div>
-    <p th:text="${pelicula.getDescription()}"></p>
-    <p th:text="${pelicula.getYear()}"></p>
-    <p th:text="${pelicula.getDirecto()}"></p>
-    <p th:text="${pelicula.getCasting()}"></p>
-    <img th:src="${pelicula.getUrlposter()}" src="${pelicula.getUrlposter()}" alt="${pelicula.getName()}"></img>
-    <p th:text="${pelicula.getRating()}"></p>
+    <p th:text="${pelicula.name}"></p>
+    <section>
+        <div class="well well-sm"><h1>V&iacute;deos</h1></div>
+        
+        <div class="container">
+          <h2>La Palma - La Isla Bonita</h2>
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" th:src="${pelicula.getUrl()}"></iframe>
+          </div>
+        </div>
+    </section>
+    
+    <p th:text="${pelicula.description}"></p>
+    <p th:text="${pelicula.year}"></p>
+    <p th:text="${pelicula.director}"></p>
+    <p th:text="${pelicula.casting}"></p>
+    <img th:src="${pelicula.getUrlposter()}" alt="${pelicula.getName()}"></img>
+    <p th:text="${pelicula.rating}"></p>
     
   </body>
 </html>

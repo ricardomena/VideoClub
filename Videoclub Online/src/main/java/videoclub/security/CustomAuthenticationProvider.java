@@ -37,19 +37,20 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         System.out.println(password);
         
         //sesion.setAttribute("username",username);
-        user = userDao.getByUser(username);
-
-        if (user == null) {
+        User userTemp = userDao.getByUser(username);
+        user.setUser(username);
+        user.setAdmin(userTemp.getAdmin());
+        if (userTemp == null) {
             System.out.println("------ 1 -------");
             throw new BadCredentialsException("User not found");
         }
-        if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
+        if (!new BCryptPasswordEncoder().matches(password, userTemp.getPassword())) {
             System.out.println("------ 2 -------");
             System.out.println(username);
             System.out.println(password);
             throw new BadCredentialsException("Wrong password");
         }
-        List<GrantedAuthority> roles = user.getRoles();
+        List<GrantedAuthority> roles = userTemp.getRoles();
         return new UsernamePasswordAuthenticationToken(username,password,roles);
     }
 

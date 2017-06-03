@@ -1,13 +1,13 @@
 videoclub/Application.class
 videoclub/controllers/MainController.class
 videoclub/controllers/PeliculaController.class
+videoclub/controllers/SessionController.class
+videoclub/controllers/UserController.class
+videoclub/models/PeliculaDao.class
 videoclub/configs/DatabaseConfig.class
 videoclub/models/Pelicula.class
 videoclub/models/User.class
-videoclub/controllers/SessionController.class
 videoclub/security/CustomAuthenticationProvider.class
 videoclub/models/UserDao.class
 videoclub/security/SecurityConfiguration.class
-videoclub/controllers/UserController.class
-videoclub/models/PeliculaDao.class
 videoclub/DatabaseLoader.class

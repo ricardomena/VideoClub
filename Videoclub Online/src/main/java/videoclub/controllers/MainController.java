@@ -42,6 +42,7 @@ public class MainController {
   public ModelAndView pruebas2() {
     ModelAndView model = new ModelAndView("pruebas2");
     //String name = user.getUser();
+    System.out.println("-------- 1 ----------");
     System.out.println(user.getUser());
     System.out.println(user.getAdmin());
     model.addObject("admin",user.getAdmin());

@@ -3,11 +3,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-
-<p th:text="${pelicula1.name}"></p>
-<p th:text="${pelicula1.getName()}"></p>
+<a th:href="@{/peliculas/{peliculaId}(peliculaId=${pelicula1.id})}"><p th:text="${pelicula1.name}"></p></a>
 <ul>
-<li th:each="pelicula : ${peliculas}" th:text="|Nombre: ${pelicula.name} Id: ${pelicula.id}|">peliculas</li>
+<tr th:each="pelicula : ${peliculas}">
+   <a th:href="@{/peliculas/{peliculaId}(peliculaId=${pelicula.id})}"><p th:text="|Nombre: ${pelicula.name} Id: ${pelicula.id}|"></p></a>
+</tr> 
+
 </ul>
 </body>
 

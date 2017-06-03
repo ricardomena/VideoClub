@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.web.bind.annotation.RequestParam;
  
 import java.util.List;
 
@@ -24,17 +25,22 @@ public class UserController {
   @Secured("ROLE_ADMIN") 
   @RequestMapping("/admin/users")
   @ResponseBody
-    public String adminUsers(Model model){
-        model.addAttribute("saludo", "Mi primera aplicacion web Spring Boot");
-        return "admin_users";
+    public ModelAndView adminUsers(){
+      return new ModelAndView("admin_users");
     }
   
   @Secured("ROLE_ADMIN")  
   @RequestMapping("/admin/peliculas")
   @ResponseBody
-    public String adminPeliculas(Model model){
-        model.addAttribute("saludo", "Mi primera aplicacion web Spring Boot");
-        return "admin_pelicula";
+    public ModelAndView adminPeliculas(){
+        return new ModelAndView("admin_pelicula");
+    }
+    
+  @Secured("ROLE_ADMIN")  
+  @RequestMapping("/admin")
+  @ResponseBody
+    public ModelAndView admin(){
+        return new ModelAndView("admin");
     }
     
   @RequestMapping("/user/profile")
@@ -133,18 +139,14 @@ public class UserController {
     return "The user is: " + userName;
   }
   
-  @RequestMapping(value="users/get-by-user")
+  @RequestMapping(value= "/get-by-user")
   @ResponseBody
-  public String getById(String userName) {
-    String userId = "";
-    try {
-      User user = userDao.getByUser(userName);
-      userId = String.valueOf(user.getId());
-    }
-    catch (Exception ex) {
-      return "User not found: " + ex.toString();
-    }
-    return "The user is: " + userId;
+  public ModelAndView getByUser(@RequestParam(value = "search", required = false)String search) {
+    //search = "p";
+      List<User> usuarios = userDao.getByUserList(search);
+      if(usuarios.isEmpty()){
+        return new ModelAndView("pruebas");
+      }
+      return new ModelAndView("pruebas3").addObject("usuarios",usuarios).addObject("usuario1",usuarios.get(0));
   }
-  
 }

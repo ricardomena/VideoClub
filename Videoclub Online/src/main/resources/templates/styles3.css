@@ -1,0 +1,257 @@
+
+.hidden {
+    display: none;
+}
+
+.centrado {
+    
+    padding-top: 50%;
+}
+
+/* Tipos de letras */
+
+.font1 {font-family: 'Luckiest Guy', cursive;}
+
+.font2 {font-family: 'Baloo', cursive;}
+
+.font3 {font-family: 'Archivo Black', sans-serif;}
+
+.font4 {
+    font-family: 'Bowlby One SC', cursive;
+    letter-spacing: 3px;
+}
+
+.font5 {font-family: 'Barrio', cursive;}
+
+/* logo */
+
+#logo-parte-1 {
+    margin-top: 35px;
+    margin-left: 25px;
+    padding-left: 12px !important;
+
+    background-color: #333;
+    color: white;
+    width: 275px;
+    
+   
+}
+
+#logo-parte-2 {
+    margin-top: 35px;
+    margin-left: 155px;
+    padding-left: 12px !important;
+
+    background-color: #E80303;
+    color: white;
+    width: 170px;
+    
+    -ms-transform: rotate(-5deg) translate(0px, -45px); /* IE 9 */
+    -webkit-transform: rotate(-5deg) translate(0px, -45px); /* Safari */
+    transform: rotate(-5deg) translate(0px, -45px); /* Standard syntax */
+    
+}
+
+/* botones */
+
+
+.btn-horizontal {
+    width: auto;
+    height: auto;
+    background: #444 !important;
+    color: #eee !important;
+    border-radius: 0 !important;
+    font-size: 20px !important;
+}
+
+.active>.btn-horizontal {
+    background: #eee !important;
+    border-bottom: 6px solid #222!important;
+    color: #444 !important;
+    border-radius: 0 !important;
+}
+
+.visible-sm .btn-vertical { 
+    width: 64px;
+    
+}
+
+.btn-vertical{
+    background: #444 !important;
+    color: #eee !important;
+    border-left: 6px solid #ccc!important;
+    border-radius: 0 !important;
+    padding: 20px !important;
+    font-size: 20px !important;
+}
+
+.btn-vertical:hover, .btn-horizontal:hover{
+    background: #eee !important;
+    color: #444 !important;
+    
+}
+
+
+
+.active>.btn-vertical, .active>.btn-izquierda {
+    background: #eee !important;
+    border-left: 6px solid #222!important;
+    color: #444 !important;
+    border-radius: 0 !important;
+}
+
+.btn-black {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #f1f1f1;
+    border-radius: 0;
+    transition: .2s;
+}
+
+/* On hover, the color of .btn will transition to white with black text */
+.btn-black:hover, .btn-black:focus {
+    border: 1.5px solid #333;
+    background-color: #fff;
+    color: #000;
+}
+
+.btn-danger {
+    background-color: #E80303 !important;
+}
+
+/* Barra de navegación */
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #2d2d30 !important;
+    border: 0 !important;
+    font-size: 11px !important;
+    opacity:0.8 !important;
+}
+
+a {
+    color: #333 !important;
+    text-shadow: 0.5px 0.3px ;
+}
+#myScrollspy {
+    padding: 3%;
+    
+}
+
+
+/* Secciones */
+
+#inicio-section-1 {
+    background: url("https://upload.wikimedia.org/wikipedia/commons/2/2f/En_el_cine_%288076488397%29.jpg") no-repeat center fixed; 
+    background-size: cover;
+    padding: 5%;
+    color: white;
+    text-shadow: 1px 1px #444;
+}
+
+#inicio-section-2 {
+    padding: 5%;
+    padding-bottom: 12%;
+    padding-top: 12%;
+    
+}
+
+.section2 {
+    background-color: #eee;
+}
+
+.section1, .section3 {
+    background: #FDFDFD;
+    
+}
+
+.section1, .section2, .section3 {
+    padding: 3%;
+}
+
+/* Estilos para formularios */
+
+#search-bar {
+    width:  50%;
+    padding: 10px;
+    margin-left: 25% !important;
+    
+    
+}
+
+
+.form1 {
+    border-radius: 0px;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    box-shadow: none ;
+
+}
+
+
+
+.form2 {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc !important;
+    /*-webkit-transition: 0.5s;
+    transition: 0.5s;*/
+    outline: none;
+}
+
+.form2:focus {
+    border: 3px solid #333 !important;
+    box-shadow:  0.5px 0.5px 0.5px grey !important;
+}
+
+
+
+.form1:focus {box-shadow: 1px 1px 5px grey !important;}
+
+.form3:focus {
+    
+    border-color: #999;
+    border-style: double;
+    box-shadow: none !important;
+    border-bottom-width: 2px;
+}
+
+/* estilos para secciones */
+
+.card {
+    box-shadow:  1px 1px 1px grey;
+}
+
+#modal-login {
+    position: absolute;
+    left: 12%;
+    top: 3%;
+
+}
+
+
+.modal-header, h4, .close {
+    background-color: #333;
+    color: #fff !important;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.modal-body {
+    margin: 5%;
+}
+
+.modal-content { width:75% !important;}
+
+.modal-header, .modal-body {
+    padding: 40px 50px;
+    
+}
+
+#modal-login {
+
+}

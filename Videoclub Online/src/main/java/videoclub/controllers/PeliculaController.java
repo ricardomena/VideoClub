@@ -3,14 +3,41 @@ package videoclub.controllers;
 import videoclub.models.Pelicula;
 import videoclub.models.PeliculaDao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
+import java.util.List;
+
+
+
 
 
 @Controller
@@ -22,7 +49,7 @@ public class PeliculaController {
 
   @RequestMapping( value = "/{id}", method = RequestMethod.GET)
   @ResponseBody
-    public ModelAndView peliculaInfo(@PathVariable("id") Long id, Model model){
+    public ModelAndView peliculaInfo(@PathVariable("id") Long id){
         Pelicula pelicula = peliculaDao.getById(id);
         return new ModelAndView("pelicula_info").addObject("pelicula", pelicula);
     }
@@ -101,19 +128,38 @@ public class PeliculaController {
   
   @RequestMapping(value= "/get-by-name")
   @ResponseBody
-  public ModelAndView getByName( String name) {
-      //getByID(@RequestParam()
-      name = "p";
-      List<Pelicula> peliculas = peliculaDao.getByName(name);
+  public ModelAndView getByName(@RequestParam(value = "search", required = false)String search) {
+      search = "p";
+      List<Pelicula> peliculas = peliculaDao.getByName(search);
       if(peliculas.isEmpty()){
         return new ModelAndView("pruebas");
       }
-      ModelAndView model = new ModelAndView("pruebas");
-      String salida = "";
-      for(Pelicula pelicula:peliculas){
-        salida = salida + "Nombre: " + pelicula.getName() + " Id: " + pelicula.getId() + "\n";
-      }
-      return model.addObject("peliculas",peliculas).addObject("pelicula1",peliculas.get(0));
+      return new ModelAndView("pruebas").addObject("peliculas",peliculas).addObject("pelicula1",peliculas.get(0));
   }
   
+  @RequestMapping(value= "/get")
+  @ResponseBody
+  public ModelAndView get(@RequestParam(value = "search", required = false)String search) throws IOException, ParseException
+  {
+        StringBuilder respuesta = new StringBuilder();
+        String link = "https://tv-v2.api-fetch.website/movies/1?sort=last%20added&keywords=Rogue%20One:%20A%20Star%20Wars%20Story";
+
+        URL url =  new URL(link);
+        HttpURLConnection conexion = null;
+                
+        conexion = (HttpURLConnection) url.openConnection();
+        conexion.addRequestProperty("User-Agent","Mozilla/5.0");
+
+
+        conexion.getInputStream();
+        BufferedInputStream in = new BufferedInputStream(conexion.getInputStream());
+        int ch;
+        while ((ch = in.read()) != -1) {
+          respuesta.append((char) ch);
+        }
+        System.out.println(respuesta);
+        return new ModelAndView("pruebas4").addObject("out",respuesta);
+  }
+  
+  //https://tv-v2.api-fetch.website/movies/1?sort=last%20added&keywords=
 }

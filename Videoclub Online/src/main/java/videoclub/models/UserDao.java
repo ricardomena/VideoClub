@@ -78,17 +78,21 @@ public class UserDao {
     return entityManager.find(User.class, id);
   }
   
+  public User getByUser(String user) {
+    return (User) entityManager.createQuery(
+        "from User where user = :user")
+        .setParameter("user", user)
+        .getSingleResult();
+  }
+  
   /**
    * Return the user having the passed id.
    */
-  public User getByUser(String user) {
-    User usuario = null;
-    List query = entityManager.createQuery(
-        "select u from User u where u.user = :user")
-        .setParameter("user", user).getResultList();
-    if(query.isEmpty())
-      return usuario;
-    return (User) query.get(0);
+  public List<User> getByUserList(String user) {
+    user = "%"+user+"%";
+    return entityManager.createQuery(
+        "select u from User u where u.user LIKE :user")
+        .setParameter("user", user).setMaxResults(10).getResultList();
 
   }
 

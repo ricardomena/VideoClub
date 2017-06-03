@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<p th:text="${usuario1.name}"></p>
+<p th:text="${usuario1.getName()}"></p>
+<ul>
+<li th:each="usuario : ${usuarios}" th:text="|Nombre: ${usuario.name} Id: ${usuario.id}|">peliculas</li>
+</ul>
+</body>
+
+</html>

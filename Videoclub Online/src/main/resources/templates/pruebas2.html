@@ -8,13 +8,14 @@
 
   <body>
   <div th:if="${admin}">
-    holi
+    <p>soy un admin \o/</p>
+    <a th:href="@{/admin}" role="button">Atras</a>
   </div>
-  chai
-  <form th:action="@{/peliculas/all-peliculas}" method="post">
+  
+  <form th:action="@{/peliculas/get-by-name}" method="post" >
   <input type="search" name="search" />
   <br />
-  <input type="submit" value="Search"/>
+  <input type="submit" value="search"/>
   </form>
   <h1>Hello Spring Security!</h1>
   <p th:text="${username}"></p>
