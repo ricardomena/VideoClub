@@ -29,13 +29,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
+
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.List;
-
+import java.lang.*;
 
 
 
@@ -129,20 +133,24 @@ public class PeliculaController {
   @RequestMapping(value= "/get-by-name")
   @ResponseBody
   public ModelAndView getByName(@RequestParam(value = "search", required = false)String search) {
-      search = "p";
+     
       List<Pelicula> peliculas = peliculaDao.getByName(search);
       if(peliculas.isEmpty()){
-        return new ModelAndView("pruebas");
+        return new ModelAndView("pruebas2");
       }
-      return new ModelAndView("pruebas").addObject("peliculas",peliculas).addObject("pelicula1",peliculas.get(0));
+      return new ModelAndView("pruebas2").addObject("peliculas",peliculas).addObject("pelicula1",peliculas.get(0)).addObject("busqueda",true);
   }
   
-  @RequestMapping(value= "/get")
+  @RequestMapping(value= "/nueva-pelicula")
   @ResponseBody
-  public ModelAndView get(@RequestParam(value = "search", required = false)String search) throws IOException, ParseException
+  public ModelAndView nuevaPelicula (@RequestParam(value = "name", required = false)String name,
+                                     @RequestParam(value = "trailer", required = false)String trailer,
+                                     @RequestParam(value = "director", required = false)String director,
+                                     @RequestParam(value = "casting", required = false)String casting) throws IOException, ParseException
   {
         StringBuilder respuesta = new StringBuilder();
-        String link = "https://tv-v2.api-fetch.website/movies/1?sort=last%20added&keywords=Rogue%20One:%20A%20Star%20Wars%20Story";
+        String titulo = name.replace(" ","%20");
+        String link = "https://tv-v2.api-fetch.website/movies/1?sort=last%20added&keywords="+ titulo;
 
         URL url =  new URL(link);
         HttpURLConnection conexion = null;
@@ -157,8 +165,26 @@ public class PeliculaController {
         while ((ch = in.read()) != -1) {
           respuesta.append((char) ch);
         }
-        System.out.println(respuesta);
-        return new ModelAndView("pruebas4").addObject("out",respuesta);
+
+        String datos = respuesta.substring(1,respuesta.length() - 1);
+        
+        JSONObject json = null;
+        if(respuesta != null)
+            json = new JSONObject(datos);
+        
+        Pelicula pelicula = new Pelicula();
+        pelicula.setName(name);
+        pelicula.setUrl(trailer);
+        pelicula.setDescription(json.getString("synopsis"));
+        pelicula.setRating(json.getJSONObject("rating").getInt("percentage"));
+        pelicula.setDirector(director);
+        pelicula.setCasting(casting);
+        pelicula.setUrlposter(json.getJSONObject("images").getString("poster"));
+        pelicula.setYear(Integer.parseInt(json.getString("year")));
+
+        peliculaDao.create(pelicula);
+
+        return new ModelAndView("admin");
   }
   
   //https://tv-v2.api-fetch.website/movies/1?sort=last%20added&keywords=

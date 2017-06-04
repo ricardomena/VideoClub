@@ -38,7 +38,7 @@ public class Pelicula {
   
   private String url_poster;
   
-  private Long rating;
+  private int rating;
 
   // ------------------------
   // PUBLIC METHODS
@@ -55,7 +55,7 @@ public class Pelicula {
     this.url = url;
   }
   
-  public Pelicula(String name, String url, String description, Integer year, String director, String casting, String url_poster, Long rating) {
+  public Pelicula(String name, String url, String description, Integer year, String director, String casting, String url_poster, int rating) {
     this.name = name;
     this.url = url;
     this.description = description;
@@ -126,11 +126,11 @@ public class Pelicula {
     this.url_poster = url_poster;
   }
   
-  public Long getRating() {
+  public int getRating() {
     return rating;
   }
 
-  public void setRating(Long rating) {
+  public void setRating(int rating) {
     this.rating = rating;
   }
   

@@ -13,17 +13,24 @@
   </div>
   
   <form th:action="@{/peliculas/get-by-name}" method="post" >
-  <input type="search" name="search" />
-  <br />
-  <input type="submit" value="search"/>
+    <input type="search" name="search" />
+    <br />
+    <input type="submit" value="search"/>
   </form>
   <h1>Hello Spring Security!</h1>
   <p th:text="${username}"></p>
   <p th:text="${password}"></p>
   <form th:action="@{/logout}" method="post">
-  <input type="submit" value="Sign Out"/>
+    <input type="submit" value="Sign Out"/>
   </form>
-  
+  <div th:if="${busqueda}">
+    <a th:href="@{/peliculas/{peliculaId}(peliculaId=${pelicula1.id})}"><p th:text="${pelicula1.name}"></p></a>
+    <ul>
+      <tr th:each="pelicula : ${peliculas}">
+       <a th:href="@{/peliculas/{peliculaId}(peliculaId=${pelicula.id})}"><p th:text="|Nombre: ${pelicula.name} Id: ${pelicula.id}|"></p></a>
+      </tr>
+    </ul>
+  </div>
   
   </body>
 

@@ -10,16 +10,6 @@
     <br />
     
     <p th:text="${pelicula.name}"></p>
-    <section>
-        <div class="well well-sm"><h1>V&iacute;deos</h1></div>
-        
-        <div class="container">
-          <h2>La Palma - La Isla Bonita</h2>
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" th:src="${pelicula.getUrl()}"></iframe>
-          </div>
-        </div>
-    </section>
     
     <p th:text="${pelicula.description}"></p>
     <p th:text="${pelicula.year}"></p>
